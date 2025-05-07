@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Basics</title>
+    <script src="./script.js" defer></script>
+    <style>
+      * {
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", sans-serif;
+        background-color: #f9fafb;
+        color: #1f2937;
+      }
+
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 220px;
+        height: 100%;
+        background-color: #1f2937;
+        padding: 20px 15px;
+        color: white;
+      }
+
+      .navbar h2 {
+        font-size: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #3a86ff;
+      }
+
+      .navbar a {
+        display: block;
+        color: white;
+        text-decoration: none;
+        padding: 10px 15px;
+        margin: 5px 0;
+        border-radius: 5px;
+        transition: 0.3s;
+      }
+
+      .navbar a:hover {
+        background-color: #3a86ff;
+      }
+
+      .main-content {
+        margin-left: 240px;
+        padding: 30px;
+      }
+
+      h1,
+      h2 {
+        color: #3a86ff;
+      }
+
+      .section {
+        margin-bottom: 60px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      th,
+      td {
+        padding: 12px;
+        border: 1px solid #ddd;
+        text-align: left;
+      }
+
+      th {
+        background-color: #1f2937;
+        color: white;
+      }
+
+      code {
+        background: #f1f5f9;
+        padding: 4px 8px;
+        border-radius: 4px;
+        display: inline-block;
+        margin-top: 5px;
+      }
+
+      p {
+        line-height: 1.6;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <h2>JS Topics</h2>
+      <a href="#data-types">Data Types</a>
+      <a href="#comparison">Comparison Operators</a>
+      <a href="#logical">Logical Operators</a>
+    </div>
+
+    <div class="main-content">
+      <h1>JavaScript Basics By Tutor Dy</h1>
+
+      <!-- Data Types Section -->
+      <div id="data-types" class="section">
+        <h2>JavaScript Data Types</h2>
+        <p>
+          JavaScript has several built-in types that help you store and
+          manipulate different kinds of values:
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Data Type</th>
+              <th>Description</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>String</strong></td>
+              <td>Textual data wrapped in quotes</td>
+              <td><code>let name = "Israel";</code></td>
+            </tr>
+            <tr>
+              <td><strong>Number</strong></td>
+              <td>Numeric values</td>
+              <td><code>let age = 25;</code></td>
+            </tr>
+            <tr>
+              <td><strong>Boolean</strong></td>
+              <td>Logical true or false</td>
+              <td><code>let isAdmin = true;</code></td>
+            </tr>
+            <tr>
+              <td><strong>Array</strong></td>
+              <td>List of items in square brackets</td>
+              <td><code>let colors = ["red", "blue", "green"];</code></td>
+            </tr>
+            <tr>
+              <td><strong>Object</strong></td>
+              <td>Collection of key-value pairs</td>
+              <td><code>let user = { name: "Israel", age: 25 };</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Comparison Operators Section -->
+      <div id="comparison" class="section">
+        <h2>Comparison Operators</h2>
+        <p>
+          Used to compare two values and return a Boolean result (<code
+            >true</code
+          >
+          or <code>false</code>).
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Operator</th>
+              <th>Description</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>==</code></td>
+              <td>Equal to (value)</td>
+              <td><code>5 == "5" // true</code></td>
+            </tr>
+            <tr>
+              <td><code>===</code></td>
+              <td>Strictly equal (type + value)</td>
+              <td><code>5 === "5" // false</code></td>
+            </tr>
+            <tr>
+              <td><code>!=</code></td>
+              <td>Not equal (loose)</td>
+              <td><code>5 != "5" // false</code></td>
+            </tr>
+            <tr>
+              <td><code>!==</code></td>
+              <td>Strictly not equal</td>
+              <td><code>5 !== "5" // true</code></td>
+            </tr>
+            <tr>
+              <td><code>&gt;</code></td>
+              <td>Greater than</td>
+              <td><code>10 &gt; 5 // true</code></td>
+            </tr>
+            <tr>
+              <td><code>&lt;</code></td>
+              <td>Less than</td>
+              <td><code>2 &lt; 5 // true</code></td>
+            </tr>
+            <tr>
+              <td><code>&gt;=</code></td>
+              <td>Greater than or equal to</td>
+              <td><code>5 &gt;= 5 // true</code></td>
+            </tr>
+            <tr>
+              <td><code>&lt;=</code></td>
+              <td>Less than or equal to</td>
+              <td><code>3 &lt;= 2 // false</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Logical Operators Section -->
+      <div id="logical" class="section">
+        <h2>Logical Operators</h2>
+        <p>Used to combine or invert Boolean values.</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Operator</th>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>&&</code></td>
+              <td>AND</td>
+              <td>True if both conditions are true</td>
+              <td><code>true && false // false</code></td>
+            </tr>
+            <tr>
+              <td><code>||</code></td>
+              <td>OR</td>
+              <td>True if at least one condition is true</td>
+              <td><code>true || false // true</code></td>
+            </tr>
+            <tr>
+              <td><code>!</code></td>
+              <td>NOT</td>
+              <td>Inverts the Boolean value</td>
+              <td><code>!true // false</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
