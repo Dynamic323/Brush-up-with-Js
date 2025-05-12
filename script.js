@@ -261,12 +261,14 @@ console.log(x % y);
 
 let isAdmin = 12;
 
-if (isAdmin) {
-  console.log("Cool");
-} else {
-  console.log("Not cool");
-}
+// if (isAdmin) {
+//   console.log("Cool");
+// } else {
+//   console.log("Not cool");
+// }
 
-// Ternary operator
+// // Ternary operator
 
-isAdmin ? console.log("cool") : console.log("Not cool");
+// isAdmin ? console.log("cool") : console.log("Not cool");
+
+// string concatiination
