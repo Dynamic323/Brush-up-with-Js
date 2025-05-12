@@ -352,8 +352,7 @@ const msg = `
   <p> ${post.content} <p/>
 
   ${post.likes.map(() => {
-
-    ""
+    "";
   })}
 `;
 
