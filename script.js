@@ -443,21 +443,21 @@ Cal(3, 3);
 
 // Highest(string);
 
-let m = "abcdef";
-console.log();
+// let m = "abcdef";
+// console.log();
 
-function solution(str) {
-  let splited = str.splice(",");
+// function solution(str) {
+//   let splited = str.splice(",");
 
-  console.log(splited);
-}
+//   console.log(splited);
+// }
 
 // solution("abcdef");
 
-let x = "Admin";
+// let x = "Admin";
 
-if (x == "User") {
-  console.log("Hello user u are welcome");
-} else {
-  console.log("Go home");
-}
+// if (x == "User") {
+//   console.log("Hello user u are welcome");
+// } else {
+//   console.log("Go home");
+// }
