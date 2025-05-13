@@ -24,7 +24,7 @@ const megaData = {
           activity: [
             { type: "post", id: 101 },
             { type: "like", targetId: 301 },
-          ],  
+          ],
         },
       ],
       projects: [
@@ -99,8 +99,9 @@ const megaData = {
 console.log(megaData.users[0].projects[0].details.name);
 
 // How many hours did Liam work on the Nebula project on March 20th?
-console.log(megaData.users[0].projects[0].details.contributors[0].logs[0].hours);
-
+console.log(
+  megaData.users[0].projects[0].details.contributors[0].logs[0].hours
+);
 
 // Get the type of the first activity of the first login history for the first user.
 

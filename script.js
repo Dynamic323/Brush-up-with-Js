@@ -314,49 +314,49 @@ const facebookData = {
 // let msg = "hello ${} you are ${}"
 // console.log(`Hello ${Name} you are ${age} yrs old`);
 
-let users = ["Max", "peter", "john", "israel", "josh"];
+// let users = ["Max", "peter", "john", "israel", "josh"];
 
 // users.map(function (){
 
 // })
 
-users.map((item) => {
-  console.log(`Hello ${item}  you are welcome`);
-});
+// users.map((item) => {
+//   console.log(`Hello ${item}  you are welcome`);
+// });
 
-let post_content = document.getElementById("post_content");
+// let post_content = document.getElementById("post_content");
 
-const post = {
-  Heading: "How to make money online",
-  content:
-    "Enim eveniet sunt dolorum corrupti eum dolores expedita tenetur similique",
-  views: 20,
-  likes: [
-    {
-      name: " Dy",
-      reaction: 1,
-    },
-    {
-      name: "Pter",
-      reaction: 2,
-    },
-    {
-      name: " Daniel",
-      reaction: 3,
-    },
-  ],
-};
+// const post = {
+//   Heading: "How to make money online",
+//   content:
+//     "Enim eveniet sunt dolorum corrupti eum dolores expedita tenetur similique",
+//   views: 20,
+//   likes: [
+//     {
+//       name: " Dy",
+//       reaction: 1,
+//     },
+//     {
+//       name: "Pter",
+//       reaction: 2,
+//     },
+//     {
+//       name: " Daniel",
+//       reaction: 3,
+//     },
+//   ],
+// };
 
-const msg = `
-  <h1>${post.Heading} <h1/>
-  <p> ${post.content} <p/>
+// const msg = `
+//   <h1>${post.Heading} <h1/>
+//   <p> ${post.content} <p/>
 
-  ${post.likes.map(() => {
-    "";
-  })}
-`;
+//   ${post.likes.map(() => {
+//     "";
+//   })}
+// `;
 
-post_content.innerHTML = msg;
+// post_content.innerHTML = msg;
 
 // users.map)
 
@@ -381,3 +381,83 @@ post_content.innerHTML = msg;
 // for (let i = 0; i < users.length; i++) {
 //   console.log(users[i]);
 // }
+
+// function Add(r) {
+//   console.log(r + 1);
+// }
+
+// Add(3)
+
+function Cal(x, y) {
+  let result = x + y;
+}
+
+Cal(3, 3);
+
+// let x = "Dynamic"
+
+// let y = " James"
+
+// console.log(x + y);
+
+// const prmt = prompt("Enter not more that two numbers and see the magic");
+
+// if (prmt.length !== 2) {
+//   alert("Invalid Must be two numbers");
+// } else {
+//   function Checker(prmt) {
+//     let splited = prmt;
+//     let x = +splited[0];
+//     let y = +splited[1];
+
+//     console.log(x + y);
+//   }
+
+//   Checker(prmt);
+// }
+
+// function operate(num, operator, num2) {
+
+//   if (!operator || !num || !num2) {
+//     return;
+//   } else {
+//     let res;
+//     if (operator == "+") {
+//       res = num + num2;
+//       console.log(res);
+//     } else if (operator == "-") {
+//       res = num - num2;
+
+//       console.log(res);
+//     }
+//   }
+// }
+
+// operate(4, "-" , 1)
+
+// let string = [12, 12, 34, 43];
+
+// function Highest(ary) {
+//   const splited = ary.split(",");
+// }
+
+// Highest(string);
+
+let m = "abcdef";
+console.log();
+
+function solution(str) {
+  let splited = str.splice(",");
+
+  console.log(splited);
+}
+
+// solution("abcdef");
+
+let x = "Admin";
+
+if (x == "User") {
+  console.log("Hello user u are welcome");
+} else {
+  console.log("Go home");
+}
