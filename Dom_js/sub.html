@@ -1,0 +1,12 @@
+<input type="text" id="input" />
+<p id="output"></p>
+<script>
+  let input = document.getElementById("input");
+  let output = document.getElementById("output");
+
+  input.addEventListener("input", () => {
+    console.log(input.value);
+
+    output.innerHTML= input.value
+  });
+</script>
