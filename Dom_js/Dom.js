@@ -6,8 +6,35 @@ let div_1 = document.querySelector(".mydiv");
 let div_2 = document.querySelector(".sec_div");
 let div_3 = document.querySelector(".sec_div3");
 
-console.log(div_1);
-console.log(div_2);
+const print = (log) => {
+  return console.log(log);
+};
+window.addEventListener("load", () => {
+  // const sheets = document.styleSheets;
+  // for (let i = 0; i < sheets.length; i++) {
+  //   const sheet = sheets[i];
+
+  //   console.log(sheet);
+  // }
+
+  //  for(const sheet of document.styleSheets){
+  //   try{
+  //     for (rul)
+  //   }catch(err){
+
+  //   }
+  //  }
+
+  for (const sheet of document.styleSheets) {
+    // try {
+      // const rules = sheet.cssRules;
+
+      // console.log(sheet.cssRules);
+    // } catch (err) {
+     
+    // }
+  }
+});
 
 const Btn1fn = () => {
   div_1.classList.remove("blue_bg");
