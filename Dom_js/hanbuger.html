@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #10151b;
+      transition: 1s ease-in;
+    }
+
+    .navbar {
+      background-color: #1f2937;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      /* position: fixed; */
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .navbar-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      transition: 0.5s ease-in;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #3a86ff;
+    }
+
+    .auth-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .auth-buttons button {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .login-btn {
+      background-color: transparent;
+      color: #fff;
+      border: 1px solid #fff;
+    }
+
+    .login-btn:hover {
+      background-color: #fff;
+      color: #1f2937;
+    }
+
+    .signup-btn {
+      background-color: #3a86ff;
+      color: #fff;
+    }
+
+    .signup-btn:hover {
+      background-color: #265ecf;
+    }
+
+    .toggle_div {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: white;
+    }
+    .toggle_div {
+      display: none;
+    }
+    @media (max-width: 786px) {
+      .navbar {
+        padding: 10px;
+      }
+
+      .navbar-right {
+        position: absolute;
+        width: 50%;
+        height: 100vh;
+        background-color: #1f2937;
+        top: 4.5%;
+        left: 0%;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 30px;
+        left: -100%;
+      }
+      .nav-links {
+        flex-direction: column;
+      }
+
+      .active {
+        left: 0;
+      }
+      .toggle_div {
+        display: block;
+        width: 50px;
+      }
+
+      .toggle_div div {
+        border-bottom: 4px solid white;
+        border-radius: 20px;
+        position: relative;
+        transition: 0.5s ease-in;
+      }
+      .line_2 {
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+      .ad {
+        width: 70%;
+        left: 29px;
+        transform: rotate(30deg) translate(10px, -5px);
+      }
+
+      .ab {
+        width: 70%;
+        left: 29px;
+        transform: rotate(-30deg) translate(10px, 5px);
+      }
+    }
+
+    #overlay {
+      background-color: transparent;
+      height: 100%;
+      width: 100%;
+      position: fixed;
+      top: 5%;
+    }
+  </style>
+  <body>
+    <div id="overlay"></div>
+    <nav class="navbar">
+      <div class="toggle_div" id="toggle">
+        <div class="line_1"></div>
+        <div class="line_2"></div>
+        <div class="line_3"></div>
+      </div>
+
+      <div class="logo">MySite</div>
+
+      <div class="navbar-right" id="navbar-right">
+        <div class="nav-links">
+          <a href="#">Home</a>
+          <a href="#">About</a>
+          <a href="#">Services</a>
+          <a href="#">Contact</a>
+        </div>
+
+        <div class="auth-buttons">
+          <button class="login-btn">Login</button>
+          <button class="signup-btn">Sign Up</button>
+        </div>
+      </div>
+    </nav>
+  </body>
+
+  <script>
+    let toggle_div = document.getElementById("toggle");
+    let navbar_right = document.getElementById("navbar-right");
+    let line_1 = document.querySelector(".line_1");
+    let line_2 = document.querySelector(".line_3");
+
+    const overlay = document.getElementById("overlay");
+    toggle_div.addEventListener("click", () => {
+      line_1.classList.toggle("ad");
+      line_2.classList.toggle("ab");
+      navbar_right.classList.toggle("active");
+    });
+
+    overlay.addEventListener("click", () => {
+      line_1.classList.remove("ad");
+      line_2.classList.remove("ab");
+      navbar_right.classList.remove("active");
+    });
+  </script>
+</html>

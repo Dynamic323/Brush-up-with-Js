@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Post Feed Example</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background: #f4f4f4;
+        color: #333;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .post {
+        background: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .post h3 {
+        margin: 0;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .post p {
+        font-size: 1em;
+        margin-bottom: 15px;
+      }
+
+      .media img,
+      .media video {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+        border-radius: 5px;
+      }
+
+      .tags {
+        margin: 10px 0;
+      }
+
+      .tag {
+        background: #e0e7ff;
+        color: #1d4ed8;
+        padding: 5px 10px;
+        border-radius: 20px;
+        margin-right: 5px;
+        font-size: 0.85em;
+      }
+
+      .comments {
+        margin-top: 15px;
+        padding-left: 10px;
+        border-left: 3px solid #ddd;
+      }
+
+      .comment {
+        margin-bottom: 10px;
+      }
+
+      .replies {
+        padding-left: 15px;
+        margin-top: 5px;
+        font-size: 0.9em;
+      }
+
+      .reply {
+        color: #555;
+        margin-top: 3px;
+      }
+
+      small {
+        display: block;
+        margin-top: 10px;
+        font-size: 0.85em;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Post Feed</h1>
+
+    <div id="_div"></div>
+
+    <script>
+      const posts = [
+        {
+          id: 101,
+          author: {
+            name: "Chinedu Okafor",
+            username: "chinedu_ok",
+            avatarUrl: "https://randomuser.me/api/portraits/men/45.jpg",
+            location: "Lagos, Nigeria",
+          },
+          content:
+            "Just finished coding a new React app! Loving async/await. 🚀",
+          media: [
+            {
+              type: "image",
+              url: "https://miro.medium.com/v2/resize:fit:1400/0*7VyEZgzwUhQMeBqb",
+            },
+            {
+              type: "video",
+              url: "",
+            },
+          ],
+          likes: 120,
+          comments: [
+            {
+              id: 5001,
+              user: { name: "Amaka", username: "amaka_j" },
+              text: "That’s awesome, Chinedu! Can’t wait to see it live.",
+              replies: [
+                {
+                  id: 6001,
+                  user: { name: "Chinedu Okafor" },
+                  text: "Thanks, Amaka! Will share soon.",
+                },
+              ],
+            },
+            {
+              id: 5002,
+              user: { name: "Emeka", username: "emeka_s" },
+              text: "Async/await really makes life easier.",
+              replies: [],
+            },
+          ],
+          tags: ["#ReactJS", "#JavaScript", "#NaijaDevs"],
+          postedAt: "2025-05-25T14:30:00Z",
+        },
+        {
+          id: 102,
+          author: {
+            name: "Fatima Bello",
+            username: "fatima_b",
+            avatarUrl: "https://randomuser.me/api/portraits/women/52.jpg",
+            location: "Abuja, Nigeria",
+          },
+          content:
+            "Exploring new features in ES2025 — especially the new pattern matching! 😎",
+          media: [],
+          likes: 85,
+          comments: [],
+          tags: ["#ES2025", "#JavaScript", "#CodingLife"],
+          postedAt: "2025-05-26T09:00:00Z",
+        },
+      ];
+
+      const container = document.getElementById("_div");
+
+      const output = posts
+        .map((post) => {
+          return `
+        <div class="post" id="post-${post.id}">
+          <h3>${post.author.name} (@${post.author.username}) - ${
+            post.author.location
+          }</h3>
+          <p>${post.content}</p>
+          <div class="media">
+            ${post.media
+              .map((media) => {
+                if (media.type === "image") {
+                  return `<img src="${media.url}" alt="Image" width="30%" />`;
+                } else if (media.type === "video") {
+                  return `<video src="${media.url}" controls></video>`;
+                }
+              })
+              .join("")}
+          </div>
+          <div class="tags">
+            ${post.tags
+              .map((tag) => `<span class="tag">${tag}</span>`)
+              .join("")}
+          </div>
+          <div class="comments">
+            ${post.comments
+              .map(
+                (comment) => `
+              <div class="comment">
+                <strong>${comment.user.name} (@${
+                  comment.user.username
+                }):</strong> ${comment.text}
+                <div class="replies">
+                  ${comment.replies
+                    .map(
+                      (reply) => `
+                    <div class="reply"><em>${reply.user.name}:</em> ${reply.text}</div>
+                  `
+                    )
+                    .join("")}
+                </div>
+              </div>
+            `
+              )
+              .join("")}
+          </div>
+          <small>Likes: ${post.likes}</small>
+          <small>Posted: ${new Date(post.postedAt).toLocaleString()}</small>
+        </div>
+      `;
+        })
+        .join("");
+
+      container.innerHTML = output;
+    </script>
+  </body>
+</html>

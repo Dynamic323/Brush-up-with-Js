@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu"
+    />
+  </head>
+  <style>
+    body {
+      font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+      margin: 0;
+      padding: 0px;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: deeppink;
+    }
+
+    ul {
+      display: flex;
+      gap: 20px;
+    }
+
+    ul > li {
+      list-style-type: none;
+    }
+    a {
+      color: rgb(0, 0, 0);
+      text-decoration: none;
+      transition: 0.5 ease;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .logo {
+      width: 50px;
+    }
+     */
+    .logo img {
+      width: 100%;
+      border-radius: 50%;
+    }
+    .other {
+      display: flex;
+      width: 80%;
+      justify-content: space-around;
+      align-items: center;
+    }
+  </style>
+
+  <style>
+    .toogle {
+      height: 400px;
+    }
+    @media (max-width: 700px) {
+      body {
+        background-color: deepskyblue;
+      }
+      nav {
+        height: 60px;
+      }
+      .other {
+        display: none;
+      }
+    }
+  </style>
+  <body>
+    <div class="container">
+      <nav>
+        <div class="toogle">
+          <img src="./menu_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" alt="" />
+        </div>
+
+        <span class="logo">
+          LOGO
+          <!-- <img
+            src="https://img.freepik.com/free-vector/bird-colorful-logo-gradient-vector_343694-1365.jpg?semt=ais_hybrid&w=740"
+            alt=""
+          /> -->
+        </span>
+
+        <div class="other">
+          <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">About</a></li>
+            <li><a href="">Contact</a></li>
+          </ul>
+
+          <div class="actoin">
+            <button class="">Login</button>
+            <button class="">sign up</button>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <script>
+      //   let toogle = document.querySelector(".toogle");
+      //   let item_divs = document.querySelector(".other");
+      //   toogle.addEventListener("click", () => {
+      //     item_divs.classList.toggle("active");
+      //   });
+    </script>
+  </body>
+</html>
