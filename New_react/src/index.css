@@ -1,0 +1,16 @@
+* {
+  padding: 0;
+  /* margin: 0px; */
+}
+
+.dark {
+  background-color: black;
+  color: white;
+}
+
+.light {
+  background-color: aliceblue;
+}
+
+.my_span{
+color: aqua;}

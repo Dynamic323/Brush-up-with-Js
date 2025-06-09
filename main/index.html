@@ -1,254 +1,461 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JavaScript Basics</title>
-    <script src="../script.js" defer></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Router 6 — Clean Guide</title>
     <style>
-      * {
-        box-sizing: border-box;
-        scroll-behavior: smooth;
-      }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-      body {
-        margin: 0;
-        font-family: "Segoe UI", sans-serif;
-        background-color: #f9fafb;
-        color: #1f2937;
-      }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            color: #2d3748;
+            line-height: 1.6;
+        }
 
-      .navbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 220px;
-        height: 100%;
-        background-color: #1f2937;
-        padding: 20px 15px;
-        color: white;
-      }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
 
-      .navbar h2 {
-        font-size: 20px;
-        margin-bottom: 20px;
-        text-align: center;
-        color: #3a86ff;
-      }
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+        }
 
-      .navbar a {
-        display: block;
-        color: white;
-        text-decoration: none;
-        padding: 10px 15px;
-        margin: 5px 0;
-        border-radius: 5px;
-        transition: 0.3s;
-      }
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 0.5rem;
+        }
 
-      .navbar a:hover {
-        background-color: #3a86ff;
-      }
+        .header p {
+            font-size: 1.1rem;
+            color: #4a5568;
+            font-weight: 400;
+        }
 
-      .main-content {
-        margin-left: 240px;
-        padding: 30px;
-      }
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            transition: box-shadow 0.2s ease;
+        }
 
-      h1,
-      h2 {
-        color: #3a86ff;
-      }
+        .section:hover {
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
 
-      .section {
-        margin-bottom: 60px;
-      }
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
 
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-      }
+        .section-number {
+            background: #4299e1;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-right: 1rem;
+            font-size: 0.9rem;
+        }
 
-      th,
-      td {
-        padding: 12px;
-        border: 1px solid #ddd;
-        text-align: left;
-      }
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #1a202c;
+        }
 
-      th {
-        background-color: #1f2937;
-        color: white;
-      }
+        .section-title code {
+            background: #edf2f7;
+            color: #2d3748;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9em;
+        }
 
-      code {
-        background: #f1f5f9;
-        padding: 4px 8px;
-        border-radius: 4px;
-        display: inline-block;
-        margin-top: 5px;
-      }
+        .description {
+            font-size: 1rem;
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+        }
 
-      p {
-        line-height: 1.6;
-      }
+        .code-block {
+            background: #1a202c;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            position: relative;
+            overflow-x: auto;
+        }
+
+        .code-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #2d3748;
+        }
+
+        .code-lang {
+            background: #4299e1;
+            color: white;
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .copy-btn {
+            background: #2d3748;
+            color: #e2e8f0;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: background 0.2s ease;
+        }
+
+        .copy-btn:hover {
+            background: #4a5568;
+        }
+
+        .code-content {
+            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+            color: #e2e8f0;
+            line-height: 1.5;
+            font-size: 0.9rem;
+        }
+
+        .keyword { color: #f56565; }
+        .string { color: #68d391; }
+        .function { color: #63b3ed; }
+        .variable { color: #fbb6ce; }
+
+        .tip-box {
+            background: #bee3f8;
+            border-left: 4px solid #4299e1;
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+
+        .tip-box p {
+            margin: 0;
+            color: #2a4365;
+            font-weight: 500;
+        }
+
+        .features-section {
+            background: #f7fafc;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .features-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1a202c;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .feature-item {
+            background: white;
+            padding: 1.2rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .feature-item h4 {
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .feature-item p {
+            color: #4a5568;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 1.5rem;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .section-number {
+                margin-right: 0;
+            }
+        }
     </style>
-  </head>
-  <body>
-    <div class="navbar">
-      <h2>JS Topics</h2>
-      <a href="#data-types">Data Types</a>
-      <a href="#comparison">Comparison Operators</a>
-      <a href="#logical">Logical Operators</a>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>React Router 6 — Key Concepts</h1>
+            <p>Clean, simple guide to modern React routing</p>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">1</div>
+                <h2 class="section-title"><code>&lt;BrowserRouter&gt;</code></h2>
+            </div>
+            <p class="description">
+                This is the top-level component that enables routing in your app. 
+                Wrap it around your entire app in <code>main.jsx</code> or <code>index.js</code>.
+            </p>
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-lang">JSX</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <div class="code-content">
+<span class="keyword">import</span> { <span class="variable">BrowserRouter</span> } <span class="keyword">from</span> <span class="string">"react-router-dom"</span>;
+
+<span class="function">&lt;BrowserRouter&gt;</span>
+  <span class="function">&lt;App /&gt;</span>
+<span class="function">&lt;/BrowserRouter&gt;</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">2</div>
+                <h2 class="section-title"><code>&lt;Routes&gt;</code> and <code>&lt;Route&gt;</code></h2>
+            </div>
+            <p class="description">
+                In React Router 6, use <code>&lt;Routes&gt;</code> instead of the old <code>&lt;Switch&gt;</code>.
+                Define all your app routes inside it.
+            </p>
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-lang">JSX</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <div class="code-content">
+<span class="function">&lt;Routes&gt;</span>
+  <span class="function">&lt;Route</span> <span class="variable">path</span>=<span class="string">"/"</span> <span class="variable">element</span>={<span class="function">&lt;Home /&gt;</span>} /&gt;
+  <span class="function">&lt;Route</span> <span class="variable">path</span>=<span class="string">"/about"</span> <span class="variable">element</span>={<span class="function">&lt;About /&gt;</span>} /&gt;
+<span class="function">&lt;/Routes&gt;</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">3</div>
+                <h2 class="section-title">Nested Routes</h2>
+            </div>
+            <p class="description">
+                Routes can be nested inside other routes. This is useful for layouts and shared UI components.
+            </p>
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-lang">JSX</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <div class="code-content">
+<span class="function">&lt;Routes&gt;</span>
+  <span class="function">&lt;Route</span> <span class="variable">path</span>=<span class="string">"/"</span> <span class="variable">element</span>={<span class="function">&lt;Layout /&gt;</span>}&gt;
+    <span class="function">&lt;Route</span> <span class="variable">index element</span>={<span class="function">&lt;Home /&gt;</span>} /&gt;
+    <span class="function">&lt;Route</span> <span class="variable">path</span>=<span class="string">"about"</span> <span class="variable">element</span>={<span class="function">&lt;About /&gt;</span>} /&gt;
+    <span class="function">&lt;Route</span> <span class="variable">path</span>=<span class="string">"contact"</span> <span class="variable">element</span>={<span class="function">&lt;Contact /&gt;</span>} /&gt;
+  <span class="function">&lt;/Route&gt;</span>
+<span class="function">&lt;/Routes&gt;</span>
+                </div>
+            </div>
+            <div class="tip-box">
+                <p><code>&lt;Layout /&gt;</code> might contain an <code>&lt;Outlet /&gt;</code> where child routes render.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">4</div>
+                <h2 class="section-title"><code>useNavigate()</code></h2>
+            </div>
+            <p class="description">
+                Programmatically navigate between routes.
+            </p>
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-lang">JSX</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <div class="code-content">
+<span class="keyword">import</span> { <span class="variable">useNavigate</span> } <span class="keyword">from</span> <span class="string">"react-router-dom"</span>;
+
+<span class="keyword">const</span> <span class="function">MyComponent</span> = () =&gt; {
+  <span class="keyword">const</span> <span class="variable">navigate</span> = <span class="function">useNavigate</span>();
+  
+  <span class="keyword">return</span> (
+    <span class="function">&lt;button</span> <span class="variable">onClick</span>={() =&gt; <span class="function">navigate</span>(<span class="string">"/about"</span>)}&gt;
+      Go to About
+    <span class="function">&lt;/button&gt;</span>
+  );
+};
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">5</div>
+                <h2 class="section-title">Dynamic Routing</h2>
+            </div>
+            <p class="description">
+                Supports route parameters like <code>:id</code>.
+            </p>
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-lang">JSX</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <div class="code-content">
+<span class="function">&lt;Route</span> <span class="variable">path</span>=<span class="string">"/user/:id"</span> <span class="variable">element</span>={<span class="function">&lt;UserPage /&gt;</span>} /&gt;
+                </div>
+            </div>
+            <p class="description">In <code>UserPage</code>, access the ID using:</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-lang">JSX</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <div class="code-content">
+<span class="keyword">import</span> { <span class="variable">useParams</span> } <span class="keyword">from</span> <span class="string">"react-router-dom"</span>;
+
+<span class="keyword">const</span> { <span class="variable">id</span> } = <span class="function">useParams</span>();
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">6</div>
+                <h2 class="section-title">Protected Routes (Custom)</h2>
+            </div>
+            <p class="description">
+                Create a wrapper to check if the user is authenticated.
+            </p>
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-lang">JSX</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <div class="code-content">
+<span class="function">&lt;Route</span> 
+  <span class="variable">path</span>=<span class="string">"/dashboard"</span> 
+  <span class="variable">element</span>={
+    <span class="function">&lt;RequireAuth&gt;</span>
+      <span class="function">&lt;Dashboard /&gt;</span>
+    <span class="function">&lt;/RequireAuth&gt;</span>
+  } 
+/&gt;
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">7</div>
+                <h2 class="section-title">Not Found Route</h2>
+            </div>
+            <p class="description">
+                Catch all unknown paths.
+            </p>
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-lang">JSX</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <div class="code-content">
+<span class="function">&lt;Route</span> <span class="variable">path</span>=<span class="string">"*"</span> <span class="variable">element</span>={<span class="function">&lt;NotFound /&gt;</span>} /&gt;
+                </div>
+            </div>
+        </div>
+
+        <div class="features-section">
+            <h3 class="features-title">✨ Newer Features (v6.4+)</h3>
+            <p style="text-align: center; color: #4a5568; margin-bottom: 1.5rem;">
+                If you're using the latest version of React Router 6, there are new features:
+            </p>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h4>loader and action</h4>
+                    <p>For data fetching and mutation</p>
+                </div>
+                <div class="feature-item">
+                    <h4>&lt;Link to=".." relative="path"&gt;</h4>
+                    <p>For smarter navigation</p>
+                </div>
+                <div class="feature-item">
+                    <h4>createBrowserRouter()</h4>
+                    <p>For data-aware routing (like Remix)</p>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="main-content">
-<p id="post_content"> </p>
-      <h1>JavaScript Basics By Tutor Dy</h1>
-
-      <!-- Data Types Section -->
-      <div id="data-types" class="section">
-        <h2>JavaScript Data Types</h2>
-        <p>
-          JavaScript has several built-in types that help you store and
-          manipulate different kinds of values:
-        </p>
-        <table>
-          <thead>
-            <tr>
-              <th>Data Type</th>
-              <th>Description</th>
-              <th>Example</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>String</strong></td>
-              <td>Textual data wrapped in quotes</td>
-              <td><code>let name = "Israel";</code></td>
-            </tr>
-            <tr>
-              <td><strong>Number</strong></td>
-              <td>Numeric values</td>
-              <td><code>let age = 25;</code></td>
-            </tr>
-            <tr>
-              <td><strong>Boolean</strong></td>
-              <td>Logical true or false</td>
-              <td><code>let isAdmin = true;</code></td>
-            </tr>
-            <tr>
-              <td><strong>Array</strong></td>
-              <td>List of items in square brackets</td>
-              <td><code>let colors = ["red", "blue", "green"];</code></td>
-            </tr>
-            <tr>
-              <td><strong>Object</strong></td>
-              <td>Collection of key-value pairs</td>
-              <td><code>let user = { name: "Israel", age: 25 };</code></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Comparison Operators Section -->
-      <div id="comparison" class="section">
-        <h2>Comparison Operators</h2>
-        <p>
-          Used to compare two values and return a Boolean result (<code
-            >true</code
-          >
-          or <code>false</code>).
-        </p>
-        <table>
-          <thead>
-            <tr>
-              <th>Operator</th>
-              <th>Description</th>
-              <th>Example</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>==</code></td>
-              <td>Equal to (value)</td>
-              <td><code>5 == "5" // true</code></td>
-            </tr>
-            <tr>
-              <td><code>===</code></td>
-              <td>Strictly equal (type + value)</td>
-              <td><code>5 === "5" // false</code></td>
-            </tr>
-            <tr>
-              <td><code>!=</code></td>
-              <td>Not equal (loose)</td>
-              <td><code>5 != "5" // false</code></td>
-            </tr>
-            <tr>
-              <td><code>!==</code></td>
-              <td>Strictly not equal</td>
-              <td><code>5 !== "5" // true</code></td>
-            </tr>
-            <tr>
-              <td><code>&gt;</code></td>
-              <td>Greater than</td>
-              <td><code>10 &gt; 5 // true</code></td>
-            </tr>
-            <tr>
-              <td><code>&lt;</code></td>
-              <td>Less than</td>
-              <td><code>2 &lt; 5 // true</code></td>
-            </tr>
-            <tr>
-              <td><code>&gt;=</code></td>
-              <td>Greater than or equal to</td>
-              <td><code>5 &gt;= 5 // true</code></td>
-            </tr>
-            <tr>
-              <td><code>&lt;=</code></td>
-              <td>Less than or equal to</td>
-              <td><code>3 &lt;= 2 // false</code></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Logical Operators Section -->
-      <div id="logical" class="section">
-        <h2>Logical Operators</h2>
-        <p>Used to combine or invert Boolean values.</p>
-        <table>
-          <thead>
-            <tr>
-              <th>Operator</th>
-              <th>Name</th>
-              <th>Description</th>
-              <th>Example</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>&&</code></td>
-              <td>AND</td>
-              <td>True if both conditions are true</td>
-              <td><code>true && false // false</code></td>
-            </tr>
-            <tr>
-              <td><code>||</code></td>
-              <td>OR</td>
-              <td>True if at least one condition is true</td>
-              <td><code>true || false // true</code></td>
-            </tr>
-            <tr>
-              <td><code>!</code></td>
-              <td>NOT</td>
-              <td>Inverts the Boolean value</td>
-              <td><code>!true // false</code></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </body>
+    <script>
+        function copyCode(button) {
+            const codeBlock = button.closest('.code-block').querySelector('.code-content');
+            const text = codeBlock.textContent.trim();
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.style.background = '#48bb78';
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = '#2d3748';
+                }, 1500);
+            });
+        }
+    </script>
+</body>
 </html>
